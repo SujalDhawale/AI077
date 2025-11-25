@@ -1,0 +1,35 @@
+1) BFS (Breadth-First Search)
+from collections import deque
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': [],
+    'F': []
+}
+
+def bfs(start, goal, graph):
+    frontier = deque([start])
+    visited = set()
+
+    while frontier:
+        node = frontier.popleft()
+
+        if node in visited:
+            continue
+        visited.add(node)
+
+        print("Visiting:", node)
+
+        if node == goal:
+            print("Goal Found:", node)
+            return
+
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                frontier.append(neighbor)
+
+print("=== BFS OUTPUT ===")
+bfs('A', 'F', graph)
