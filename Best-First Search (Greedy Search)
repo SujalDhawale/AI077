@@ -1,0 +1,44 @@
+import heapq
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': [],
+    'F': []
+}
+
+heuristic = {
+    'A': 3,
+    'B': 2,
+    'C': 1,
+    'D': 5,
+    'E': 4,
+    'F': 0
+}
+
+def best_first(start, goal, graph, h):
+    frontier = []
+    heapq.heappush(frontier, (h[start], start))
+    visited = set()
+
+    while frontier:
+        _, node = heapq.heappop(frontier)
+
+        if node in visited:
+            continue
+        visited.add(node)
+
+        print("Visiting:", node)
+
+        if node == goal:
+            print("Goal Found:", node)
+            return
+
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                heapq.heappush(frontier, (h[neighbor], neighbor))
+
+print("=== BEST FIRST SEARCH OUTPUT ===")
+best_first('A', 'F', graph, heuristic)
