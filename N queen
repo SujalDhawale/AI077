@@ -1,0 +1,44 @@
+def solve_nqueens_all(n):
+    """
+    Backtracking solution that collects all solutions.
+    Each solution is a list `cols` where cols[row] = column index (0-based)
+    """
+    solutions = []
+    cols = [-1] * n
+
+    def is_safe(r, c):
+        for pr in range(r):
+            pc = cols[pr]
+            # same column or same diagonal
+            if pc == c or abs(pc - c) == abs(pr - r):
+                return False
+        return True
+
+    def backtrack(r=0):
+        if r == n:
+            solutions.append(cols.copy())
+            return
+        for c in range(n):
+            if is_safe(r, c):
+                cols[r] = c
+                backtrack(r + 1)
+                cols[r] = -1
+
+    backtrack()
+    return solutions
+
+def print_board(cols):
+    n = len(cols)
+    for r in range(n):
+        row = ['.'] * n
+        row[cols[r]] = 'Q'
+        print(' '.join(row))
+    print()
+
+if __name__ == "__main__":
+    N = int(input("Enter N for N-Queens (print all solutions): ").strip() or 8)
+    sols = solve_nqueens_all(N)
+    print(f"\nTotal solutions for N={N}: {len(sols)}\n")
+    for i, s in enumerate(sols, 1):
+        print(f"Solution {i}:")
+        print_board(s)
