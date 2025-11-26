@@ -8,3 +8,6 @@ count_down(N) :-
     writeln(N),
     N1 is N - 1,
     count_down(N1).
+
+count_down(N) :-
+    N < 1.
