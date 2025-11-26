@@ -1,0 +1,17 @@
+add(X, Y, Result) :-
+    Result is X + Y.
+
+
+
+
+main:-
+    write('Enter the Number'),
+    read(X),
+    write('Enter the second Number')
+    read(Y),
+    add(X,Y,Sum),
+    write('The sum is '),write(Sum),n1
+    
+:-initialization(main)    
+    
+    
