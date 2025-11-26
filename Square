@@ -1,0 +1,14 @@
+start :-
+    write('Enter a number: '),
+    read(N),
+    square_to_20(N).
+
+square_to_20(N) :-
+    N =< 20,
+    S is N * N,
+    write(N), write(' square = '), writeln(S),
+    N1 is N + 1,
+    square_to_20(N1).
+
+square_to_20(N) :-
+    N > 20.
