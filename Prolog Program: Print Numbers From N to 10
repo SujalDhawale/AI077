@@ -1,0 +1,8 @@
+print_to_10(N) :-
+    N =< 10,
+    writeln(N),
+    N1 is N + 1,
+    print_to_10(N1).
+
+print_to_10(N) :-
+    N > 10.
