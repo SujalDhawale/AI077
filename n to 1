@@ -1,0 +1,10 @@
+start :-
+    write('Enter a number: '),
+    read(N),
+    count_down(N).
+
+count_down(N) :-
+    N >= 1,
+    writeln(N),
+    N1 is N - 1,
+    count_down(N1).
